@@ -4,18 +4,7 @@ import java.util.*;
 
  public class Graph {
 
-    public class Edge {
-        int source;
-        int destination;
-        int weight;
-    
-     public Edge( int source, int destination, int weight) {
-    
-        this.source = source;
-        this.destination = destination;
-        this.weight = weight;
-     }
-     }
+
 
 
     int vertices;
@@ -95,10 +84,7 @@ import java.util.*;
             
             
         }
-        
-           
-    
-    
+            
  }
 
  public void printGraph(){
@@ -110,14 +96,81 @@ import java.util.*;
             
         }
     }
+    
+    //System.out.println("The size of the linked list is :"+ this.adjacencylist[0].get(1).source);
 }
 
 public LinkedList<Edge> getAdjacencylist(){ return this.getAdjacencylist();}
 
 
+//BFS to print the shortest path 
 
+public int[] BFS(int v)
+    {
+        int n = this.adjacencylist.length;
+
+        // dist[i] is the distance from v to i
+        int[] dist = new int[n];
+        for (int i = 0; i < n; i++) {
+            dist[i] = Integer.MAX_VALUE;
+        }
+
+        // seen[i] is true if there is a path from v to i
+        boolean[] seen = new boolean[n];
+
+        dist[v] = 0;
+
+        // determine n-1 paths from v
+        for (int j = 0; j < n; j++) {
+            // choose closest unseen vertex
+            int u = -1;
+
+        
+            for (int k = 0; k < n; k++) {
+                if (!seen[k]) {
+                    // check if u needs updating
+                    if (u < 0 || dist[k] < dist[u]) {
+                        u = k;
+                    }
+                }
+            }
+
+            if (u < 0 || dist[u] == Integer.MAX_VALUE) {
+                break;
+            }
+
+            // at this point dist[u] is the cost of the
+            // shortest path from v to u
+
+            // set seen[u] to true and update the distances
+            seen[u] = true;
+
+            for (Edge e : this.adjacencylist[u]) {
+
+                int nbr = e.destination;
+                int altDist = dist[u] + e.weight;
+                dist[nbr] = Math.min(dist[nbr], altDist);
+            }
+
+
+        }
+
+        return dist;
+
+    }
 
  }
+
+            
+
+
+
+
+
+
+    
+
+ 
 
 
 
