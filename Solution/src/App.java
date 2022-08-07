@@ -127,6 +127,26 @@ public class App {
                 System.out.println(pd);
             }
 
+ //Organizando mejor la lista de nodos en llaves 
+
+ HashMap<Integer,Node> NodeListHash= new HashMap<Integer,Node>(); //Creating HashMap 
+ int key=0;
+
+ for(Node i:NodeList){
+     NodeListHash.put(key, i);
+     key++;
+ }
+ 
+//Creando el grafo         
+
+    System.out.println("---------PRINTING GRAPH-----------");
+    Graph graph = new Graph(NodeListHash.size());
+    graph.addEgde(NodeListHash);
+
+    graph.printGraph();
+
+
+
 
 
 
