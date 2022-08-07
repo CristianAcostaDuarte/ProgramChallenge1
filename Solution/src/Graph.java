@@ -44,7 +44,7 @@ import java.util.*;
 
             for (int j = 0; j< NodeListHash.size();j++ ){
     
-                if(i!=j){
+                
     
     
     
@@ -53,7 +53,7 @@ import java.util.*;
     
                         if((NodeListHash.get(i).getUp().getId1()==NodeListHash.get(j).getId1()) & (NodeListHash.get(i).getUp().getId2()==NodeListHash.get(j).getId2())){
     
-                            m=NodeListHash.get(i).getValue()-NodeListHash.get(j).getValue();
+                            m=-NodeListHash.get(i).getValue()+NodeListHash.get(j).getValue();
                             Edge edge = new Edge(NodeListHash.get(i).getValue(), NodeListHash.get(j).getValue(), m);
                             adjacencylist[i].addFirst(edge); //for directed graph
     
@@ -61,21 +61,21 @@ import java.util.*;
     
                         }else if((NodeListHash.get(i).getDown().getId1()==NodeListHash.get(j).getId1()) & (NodeListHash.get(i).getDown().getId2()==NodeListHash.get(j).getId2())){
     
-                            m=NodeListHash.get(i).getValue()-NodeListHash.get(j).getValue();
+                            m=-NodeListHash.get(i).getValue()+NodeListHash.get(j).getValue();
                             Edge edge = new Edge(NodeListHash.get(i).getValue(), NodeListHash.get(j).getValue(), m);
                             adjacencylist[i].addFirst(edge); //for directed graph
     
     
                         }else if((NodeListHash.get(i).getLeft().getId1()==NodeListHash.get(j).getId1()) & (NodeListHash.get(i).getLeft().getId2()==NodeListHash.get(j).getId2())){
     
-                            m=NodeListHash.get(i).getValue()-NodeListHash.get(j).getValue();
+                            m=-NodeListHash.get(i).getValue()+NodeListHash.get(j).getValue();
                             Edge edge = new Edge(NodeListHash.get(i).getValue(), NodeListHash.get(j).getValue(), m);
                             adjacencylist[i].addFirst(edge); //for directed graph
     
     
                         }else if((NodeListHash.get(i).getRight().getId1()==NodeListHash.get(j).getId1()) & (NodeListHash.get(i).getRight().getId2()==NodeListHash.get(j).getId2())){
     
-                            m=NodeListHash.get(i).getValue()-NodeListHash.get(j).getValue();                        
+                            m=-NodeListHash.get(i).getValue()+NodeListHash.get(j).getValue();
                             Edge edge = new Edge(NodeListHash.get(i).getValue(), NodeListHash.get(j).getValue(), m);
                             adjacencylist[i].addFirst(edge); //for directed graph
     
@@ -97,7 +97,7 @@ import java.util.*;
         }
         
            
-    }
+    
     
  }
 
@@ -105,14 +105,21 @@ import java.util.*;
     for (int i = 0; i <vertices ; i++) {
         LinkedList<Edge> list = adjacencylist[i];
         for (int j = 0; j <list.size() ; j++) {
-            System.out.println("Node-" + i + " is connected to " +
+            System.out.println("Node-" + i +" has a head-> "+ list.get(j).source+ " and is connected to " +
             list.get(j).destination + " with weight " + list.get(j).weight);
+            
         }
     }
 }
 
 public LinkedList<Edge> getAdjacencylist(){ return this.getAdjacencylist();}
+
+
+
+
  }
+
+
 
 
 

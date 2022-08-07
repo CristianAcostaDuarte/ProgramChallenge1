@@ -145,12 +145,6 @@ public class App {
 
     graph.printGraph();
 
-
-
-
-
-
-
         }
 
         catch (Exception e) {
